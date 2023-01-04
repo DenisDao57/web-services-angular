@@ -1,0 +1,62 @@
+<mat-dialog-content>
+    <form class="mt-4" [formGroup]="form" style="width:50%;margin:auto;">
+        <h1 class="text-center">Mon profil</h1>
+        <table style="width:100%" cellspacing="0">
+            <tr>
+                Prénom
+                <mat-form-field style="width:100%" appearance="outline">
+                    <input matInput placeholder="Prénom" formControlName="prenom" required name="prenom" />
+                </mat-form-field>
+                <mat-error *ngIf="form.get('prenom')?.dirty && form.get('prenom')?.hasError('required')">
+                    prenom <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="form.get('prenom')?.dirty && form.get('prenom')?.hasError('maxlength')">
+                    prenom has at most<strong> 30 chars </strong>
+                </mat-error>
+            </tr>
+            <tr>
+                Nom
+                <mat-form-field style="width:100%" appearance="outline">
+                    <input matInput placeholder="Nom" formControlName="nom" required name="nom" />
+                </mat-form-field>
+                <mat-error *ngIf="form.get('nom')?.dirty && form.get('nom')?.hasError('required')">
+                    nom <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="form.get('nom')?.dirty && form.get('nom')?.hasError('maxlength')">
+                    nom has at most<strong> 30 chars </strong>
+                </mat-error>
+            </tr>
+            <tr>
+                N° permis
+                <mat-form-field style="width:100%" appearance="outline">
+                    <input matInput placeholder="N° Permis" formControlName="no_permis" required name="no_permis" />
+                </mat-form-field>
+                <mat-error *ngIf="form.get('no_permis')?.dirty && form.get('no_permis')?.hasError('required')">
+                    n° permis <strong>required</strong>
+                </mat-error>
+            </tr>
+            <tr>
+                Adresse
+                <mat-form-field style="width:100%" appearance="outline">
+                    <input matInput placeholder="Adresse" formControlName="adresse" required name="adresse" />
+                </mat-form-field>
+                <mat-error *ngIf="form.get('adresse')?.dirty && form.get('adresse')?.hasError('required')">
+                    adresse <strong>required</strong>
+                </mat-error>
+            </tr>
+            <tr>
+                Mot de passe
+                <mat-form-field style="width:100%" appearance="outline">
+                    <input type="password" matInput placeholder="Password" formControlName="pwd" required name="pwd" />
+                </mat-form-field>
+                <mat-error *ngIf="form.get('pwd')?.dirty && form.get('pwd')?.hasError('required')">
+                    Password <strong>required</strong>
+                </mat-error>
+            </tr>
+            <tr>
+                <button (click)="modifier(form.value)" [disabled]="form.invalid" type="button" class="btn btn-success">Modifier</button>
+                <button type="button" class="btn btn-primary ms-4" [routerLink]="['/home']">Retour</button>
+            </tr>
+        </table>
+    </form>
+</mat-dialog-content>

@@ -1,0 +1,34 @@
+<div class="div-center" style="width:40%;margin:auto;margin-top:6em;">
+    <div class="content">
+        <mat-card>
+            <mat-card-title class="text-center">Login</mat-card-title>
+            <div *ngIf="error" class="text-center text-danger"> 
+                Wrong id/password
+            </div>
+            <mat-card-content>
+                <form [formGroup]="form">
+
+                    <mat-form-field style="width:100%" appearance="outline">
+                        <input type="text" matInput placeholder="Id" formControlName="user">
+                    </mat-form-field>
+                    <mat-error *ngIf="form.get('user')?.dirty && form.get('user')?.hasError('required')">
+                        ID <strong>required</strong>
+                    </mat-error>
+
+                    <mat-form-field style="width:100%" appearance="outline">
+                        <input type="password" matInput placeholder="Password" formControlName="pwd">
+                    </mat-form-field>
+                    <mat-error *ngIf="form.get('pwd')?.dirty && form.get('pwd')?.hasError('required')">
+                        Password <strong>required</strong>
+                    </mat-error>
+        
+                    <div class="text-center mt-4">
+                        <button mat-button  (click)="login(form.value)" class="btn btn-success" type="button" [disabled]="form.invalid">Login</button>
+                    </div>
+
+                </form>
+             
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

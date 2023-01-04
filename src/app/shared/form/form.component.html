@@ -1,0 +1,71 @@
+<!--<h2 mat-dialog-title *ngIf="isUpdateMode">Update {{ form.get('firstname')?.value }} {{ form.get('lastname')?.value }}</h2> -->
+<h2 mat-dialog-title>  
+    Créer un nouveau joueur
+  </h2>
+
+  <mat-dialog-content>
+    <form [formGroup]="form">
+  
+      <table class="full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="registrationNumber du lieu" formControlName="registrationNumber" required name="registrationNumber" />
+            </mat-form-field>
+            <mat-error *ngIf="form.get('registrationNumber')?.dirty && form.get('registrationNumber')?.hasError('required')">
+              registrationNumber <strong>requis</strong>
+            </mat-error>
+
+            <mat-form-field class="full-width">
+              <textarea matInput placeholder="vehiculeType" formControlName="vehiculeType" required name="vehiculeType"></textarea>
+            </mat-form-field>
+            <mat-error *ngIf="form.get('vehiculeType')?.dirty && form.get('vehiculeType')?.hasError('required')">
+              vehiculeType <strong>requise</strong>
+            </mat-error>
+
+            <!--
+            <mat-form-field *ngIf="action=='edit'" class="full-width invisible">
+              <input matInput formControlName="_id" name="_id" value="">
+            </mat-form-field>
+            -->
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="model du lieu" formControlName="model" required name="model" />
+              </mat-form-field>
+              <mat-error *ngIf="form.get('model')?.dirty && form.get('model')?.hasError('required')">
+                model <strong>requis</strong>
+              </mat-error>
+  
+              <mat-form-field class="full-width">
+                <textarea matInput placeholder="brand" formControlName="brand" required name="brand"></textarea>
+              </mat-form-field>
+              <mat-error *ngIf="form.get('brand')?.dirty && form.get('brand')?.hasError('required')">
+                brand <strong>requise</strong>
+              </mat-error>
+          </td>
+        </tr>
+
+        <tr>
+            <td>
+              <mat-form-field class="full-width">
+                  <input matInput placeholder="seats du lieu" formControlName="seats" required name="seats" />
+                </mat-form-field>
+                <mat-error *ngIf="form.get('seats')?.dirty && form.get('seats')?.hasError('required')">
+                  seats <strong>requis</strong>
+                </mat-error>
+            </td>
+          </tr>
+      <!-- required by API, so we put static content which is not editable but sent to the API -->
+      </table>
+    </form>
+  </mat-dialog-content>
+  
+  
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="cancel()">Annuler</button>
+    <button *ngIf="action=='add'" mat-button type="button" (click)="submit(form.value)" type="submit" [disabled]="form.invalid">Ajouter</button>
+  </mat-dialog-actions>

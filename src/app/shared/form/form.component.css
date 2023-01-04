@@ -1,0 +1,23 @@
+img {
+    border-radius: 50%;
+    margin-right: 18px;
+  }
+  
+  .align-right {
+    text-align: right;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .mgb15{
+    margin-bottom: 15px;
+  }
+  
+  .invisible{
+    display: block;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+  }

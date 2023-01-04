@@ -1,0 +1,63 @@
+<div id="mylist" *ngIf="voiture.length > 0; else elseBlock" class="list-group w-50 mx-auto">
+    <input class="form-control" id="myInput" [(ngModel)]="marque" type="text" placeholder="Marque" value="{{marque}}">
+    <input class="form-control mt-1" id="myInput" [(ngModel)]="modele" type="text" placeholder="Modèle" value="{{modele}}">
+    <input class="form-control mt-1" id="myInput" [(ngModel)]="seats" type="text" placeholder="Nombre de place minimum" value="{{seats}}">
+    <select class="form-select mt-1" [(ngModel)]="type" aria-label="Default select example">
+      <option value="Voiture" selected>Voiture</option>
+      <option value="Moto">Moto</option>
+      <option value="">Les deux</option>
+    </select>
+    <form [formGroup]="form" style="width:100%;">
+    <mat-form-field class="mt-1" style="width:100%;">
+      <input matInput [matDatepicker]="releasedAtPicker" [(ngModel)]="date" (ngModelChange)="dateChange()"  required readonly
+          placeholder="Date de disponibilité" formControlName="start" style="width:100%;">
+      <mat-datepicker-toggle matPrefix [for]="releasedAtPicker">
+          <mat-icon matDatepickerToggleIcon>
+              calendar_month
+          </mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #releasedAtPicker>
+      </mat-datepicker>
+     </mat-form-field>
+    </form>
+    <!--<button (click)="showDialog('add')" type="button" class="btn btn-outline-primary mt-1">Ajouter</button> -->
+    <!-- Liste des voiturex -->
+    
+    <div *ngFor="let li of voiture">
+      <!-- Si le registrationNumber correspond à ce qu'on recherche alors on l'affiche -->
+      <a *ngIf="(li.brand | lowercase).includes((marque|lowercase)) 
+      && (li.model | lowercase).includes((modele|lowercase))
+      && (li.vehiculeType | lowercase).includes((type|lowercase))
+      && (li.seats>=seats)"
+          class="list-group-item list-group-item-action rounded mt-3 border-top" aria-current="true">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{li.brand}} - {{li.registrationNumber}} - {{li.vehiculeType}}</h5>
+        </div>
+  
+        <hr class="w-75" /> <!-- Barre de séparation -->
+  
+        <!-- Descripton -->
+        <p><b>Modèle</b> : {{li.model}}</p>
+        <p><b>Catégorie</b> : {{li.category}} - {{li.gearbox}}</p>
+        <p><b>Nombre de sièges</b> : {{li.seats}}</p>
+        <p class="mt-3">{{li.comments}}</p>
+        <!-- Boutons -->
+        <!--
+        <div class="" style="display: flex; justify-content: flex-end;">
+          <button (click)="deleteVoiture(li)" type="button" class="btn btn-danger btn-sm ms-1"><img
+              style="width:1em;filter: invert(100%);"
+              src="https://cdn-icons-png.flaticon.com/512/2891/2891491.png" /></button>
+        </div>
+      -->
+      <button *ngIf='id_user != ""' [disabled]="form.invalid" (click)="addPre(li.registrationNumber,form.value)" type="button" class="btn btn-success" style="margin-left: 90%;">Louer</button>
+      </a>
+      
+    </div>
+  
+  </div>
+  
+  <ng-template #elseBlock>
+    <h2 class="text-center mt-3">Il n'y a aucun voiture disponible</h2>  
+  </ng-template>
+
+  
