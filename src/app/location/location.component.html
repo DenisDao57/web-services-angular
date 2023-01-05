@@ -1,6 +1,8 @@
 <div id="mylist" *ngIf="voiture.length > 0; else elseBlock" class="list-group w-50 mx-auto">
     <!--<button (click)="showDialog('add')" type="button" class="btn btn-outline-primary mt-1">Ajouter</button> -->
     <!-- Liste des voiturex -->
+
+    <h2 class="text-center mt-3">Voiture en cours de prêt : </h2>
     
     <div *ngFor="let li of voiture">
       <!-- Si le registrationNumber correspond à ce qu'on recherche alors on l'affiche -->
@@ -40,7 +42,7 @@
   <h2 class="text-center">Voiture en cours de validation : </h2>
   <div class="list-group w-50 mx-auto">
     <div *ngFor="let li of preVoiture">
-      <div *ngIf="li.end >= today">
+      <div *ngIf="li.end >= today" class="mb-5">
       <!-- Si le registrationNumber correspond à ce qu'on recherche alors on l'affiche -->
       <a class="list-group-item list-group-item-action rounded mt-3 border-top" aria-current="true">
         <div class="d-flex w-100 justify-content-between">
