@@ -37,6 +37,11 @@ export class AuthService {
       );
   }
 
+
+  fetchId(id:string): Observable<Login> {
+    return this._http.get<Login>(this._backendURL.idUser.replace(':id', id));
+  }  
+
   update(log: Login): Observable<any> {
     var id_url = log.user
     return this._http.put<Login>(this._backendURL.editLog, log, {headers:this.headers});

@@ -47,11 +47,8 @@
             <tr>
                 Mot de passe
                 <mat-form-field style="width:100%" appearance="outline">
-                    <input type="password" matInput placeholder="Password" formControlName="pwd" required name="pwd" />
+                    <input type="password" matInput placeholder="Password" formControlName="pwd" name="pwd" />
                 </mat-form-field>
-                <mat-error *ngIf="form.get('pwd')?.dirty && form.get('pwd')?.hasError('required')">
-                    Password <strong>required</strong>
-                </mat-error>
             </tr>
             <tr>
                 <button (click)="modifier(form.value)" [disabled]="form.invalid" type="button" class="btn btn-success">Modifier</button>

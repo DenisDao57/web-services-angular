@@ -21,7 +21,8 @@ export const environment = {
       allLog:'/voitureAPI/login/JSON',
       editLog:'/voitureAPI/login/JSON',
       allUser:'/voitureAPI/user/JSON',
-      editUser:'/voitureAPI/user/JSON'
+      editUser:'/voitureAPI/user/JSON',
+      idUser:'/voitureAPI/login/JSON/:id'
     },
   },
 };

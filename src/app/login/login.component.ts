@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
 import { Login } from '../shared/types/login.type';
-
+import { Md5 } from 'ts-md5';
 
 @Component({
   selector: 'app-login',
@@ -33,14 +33,12 @@ export class LoginComponent implements OnInit {
   // If yes then it changes the page
   // Else it stays on the page
   public login(log:Login){
-    this._authService.fetch().subscribe({
-      next: (logins: Login[]) => {
-        logins.forEach(temp => {
-          if(temp.user==log.user && temp.pwd === log.pwd){
+    this._authService.fetchId(log.user.toString()).subscribe({
+      next: (logins: Login) => {
+          if(logins.user==log.user && logins.pwd === Md5.hashStr(log.pwd)){
             localStorage.setItem('user',log.user.toString());
             this.router.navigate(['/home']);
-          }
-        });
+          }  
         this.error=true;
       }
   });

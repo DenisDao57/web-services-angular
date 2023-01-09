@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Md5 } from 'ts-md5';
 import { AuthService } from '../shared/services/auth.service';
 import { UserService } from '../shared/services/user.service';
 import { Login } from '../shared/types/login.type';
@@ -35,12 +36,12 @@ export class AccountComponent {
 
     this.own_log = {
       user:Number(localStorage.getItem('user')),
-      pwd:temp.pwd
+      pwd:Md5.hashStr(temp.pwd)
     }
 
     if (window.confirm("Voulez vous vraiment modifier votre profil ? ")){
       this.userService.update(this.own_user).subscribe();
-      this.authService.update(this.own_log).subscribe();
+      if (this.own_log.pwd!=="" || this.own_log.pwd !== undefined) this.authService.update(this.own_log).subscribe();
       window.location.reload();
     }
   }
@@ -65,7 +66,6 @@ export class AccountComponent {
         logs.forEach(log => {
           if(log.user==Number(localStorage.getItem('user'))){
             this.own_log=log;
-            this.form.patchValue(log);
             return;
           }
         });
@@ -86,7 +86,7 @@ export class AccountComponent {
         Validators.required, Validators.minLength(1)
       ])),
       pwd: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(1)
+        
       ])),
       nom: new FormControl('', Validators.compose([
         Validators.required, Validators.minLength(1)

@@ -18,7 +18,7 @@
       </ul>
 
       <div *ngIf="!authService.isAuth()">
-        <a class="nav-link" aria-current="page" [routerLink]="['/login']">Login</a>
+        <button class="btn btn-primary" type="button" aria-current="page" [routerLink]="['/login']">Login</button>
       </div>
 
       <div *ngIf="authService.isAuth()">
