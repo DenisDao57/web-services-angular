@@ -10,6 +10,7 @@ export const environment = {
     port: '8090',
     endpoints: {
       allVoiture: '/voitureAPI/voiture/JSON',
+      allVoitureXML: '/voitureAPI/voiture/XML',
       createVoiture: '/voitureAPI/voiture/JSON',
       deleteVoiture: '/voitureAPI/voiture/JSON/:id',
       editVoiture: 'voitureAPI/voiture/JSON',

@@ -31,13 +31,21 @@ export class VoitureService {
    /**
     * Pour get all Voiturex
     */
-   fetch(): Observable<Voiture[]> {
+   fetch(xml:boolean): Observable<Voiture[]> {
    
+    if (!xml){
      return this._http.get<Voiture[]>(this._backendURL.allVoiture)
        .pipe(
          filter((Voiture: Voiture[]) => !!Voiture),
          defaultIfEmpty([])
        );
+    }else{
+      return this._http.get<Voiture[]>(this._backendURL.allVoitureXML)
+      .pipe(
+        filter((Voiture: Voiture[]) => !!Voiture),
+        defaultIfEmpty([])
+      );
+    }
    }
  
    /**

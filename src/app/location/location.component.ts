@@ -60,7 +60,7 @@ export class LocationComponent {
   }
 
   updateVoiture() {
-    this._voitureService.fetch().subscribe({
+    this._voitureService.fetch(false).subscribe({
       next: (voitures: Voiture[]) => {
         this.loanService.fetch().subscribe({
           next: (loans: Loan[]) => {
@@ -92,7 +92,7 @@ export class LocationComponent {
   }
 
   updatePreVoiture() {
-    this._voitureService.fetch().subscribe({
+    this._voitureService.fetch(false).subscribe({
       next: (voitures: Voiture[]) => {
         this.loanService.fetchPre().subscribe({
           next: (loans: Loan[]) => {

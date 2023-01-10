@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
   // Map pour associer une addresse à un Voiture
   public address: Map<string, string>;
 
+  public xml: boolean = false;
+
   public marque: string = "";
   public type: string = "";
   public modele: string = "";
@@ -69,7 +71,7 @@ export class HomeComponent implements OnInit {
   }
 
   updateVoiture() {
-    this._voitureService.fetch().subscribe({
+    this._voitureService.fetch(this.xml).subscribe({
       next: (Voiture: Voiture[]) => {
         this._voiture = Voiture;
         this.temp=Object.assign([],this._voiture);

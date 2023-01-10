@@ -1,4 +1,11 @@
 <div id="mylist" *ngIf="voiture.length > 0; else elseBlock" class="list-group w-50 mx-auto">
+  <div class = "tpbutton btn-toolbar mt-2 mb-2" style="text-align:center">
+    <div class="form-check form-switch">
+      <input [(ngModel)]="xml" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" value="xml">
+      <label class="form-check-label me-3" for="flexSwitchCheckDefault">XML</label>
+    </div>
+    <button (click)="updateVoiture()" type="button" class="btn btn-outline-primary btn-sm">Refresh</button>
+  </div>
     <input class="form-control" id="myInput" [(ngModel)]="marque" type="text" placeholder="Marque" value="{{marque}}">
     <input class="form-control mt-1" id="myInput" [(ngModel)]="modele" type="text" placeholder="Modèle" value="{{modele}}">
     <input class="form-control mt-1" id="myInput" [(ngModel)]="seats" type="text" placeholder="Nombre de place minimum" value="{{seats}}">
